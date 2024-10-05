@@ -10,6 +10,7 @@ public class StudentList {
 			System.out.println(Constants.VALID_ARGUMENTS);
 			return;
 		}
+		
 		String fileContents = LoadData(Constants.STUDENTS_LIST);
 		if (args[Constants.ZERO].equals(Constants.SHOW_ALL)) {
 			System.out.println(Constants.LOADING);
