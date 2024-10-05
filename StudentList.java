@@ -6,6 +6,10 @@ public class StudentList {
 	public static void main(String[] args) {
 
 		// Check arguments
+		if(args == null || args.length != 1){
+			System.out.println("Available inputs : a | r | c | ?StudentName | +StudentName");
+			return;
+		}
 		if (args[0].equals("a")) {
 			System.out.println("Loading data ...");
 			try {
