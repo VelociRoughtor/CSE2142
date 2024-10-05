@@ -6,7 +6,7 @@ public class StudentList {
 	public static void main(String[] args) {
 
 		// Check arguments
-		if(args == null || args.length != Constants.ONE){
+		if(ArgumentCheck(args)){
 			System.out.println(Constants.VALID_ARGUMENTS);
 			return;
 		}
@@ -71,5 +71,14 @@ public class StudentList {
 			fileWriter.close();
 		} catch (Exception e) {
 		}
+	}
+
+	public static boolean ArgumentCheck(String[] args) {
+		if (args == null || args.length != Constants.ONE){
+			return true;
+		} else if (args.length == Constants.ONE && !args[Constants.ZERO].equals(Constants.SHOW_ALL) && !args[Constants.ZERO].equals(Constants.SHOW_COUNT) && !args[Constants.ZERO].equals(Constants.SHOW_RANDOM) && !args[Constants.ZERO].equals(Constants.ADD_ENTRY) && !args[Constants.ZERO].equals(Constants.FIND_ENTRY)){
+			return true;
+		}
+		return false;
 	}
 }
