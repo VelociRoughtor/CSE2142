@@ -25,14 +25,15 @@ public class StudentList {
 			int randomIndex = random.nextInt(Constants.ZERO, words.length);
 			System.out.println(words[randomIndex]);
 			System.out.println(Constants.DATA_LOADED);
-		} else if (args[Constants.ZERO].contains(Constants.FIND_ENTRY)) {
+		} else if (args[Constants.ZERO].contains(Constants.ADD_ENTRY)) {
 			System.out.println(Constants.LOADING);
 			String argValue = args[Constants.ZERO].substring(Constants.ONE);
 			UpdateContent(argValue, Constants.STUDENTS_LIST);
 			System.out.println(Constants.DATA_LOADED);
-		} else if (args[Constants.ZERO].contains("?")) {
+		} else if (args[Constants.ZERO].contains(Constants.FIND_ENTRY)) {
 			System.out.println(Constants.LOADING);
 			String words[] = fileContents.split(Constants.STUDENT_ENTRY_DELIMITER);
+
 			boolean done = false;
 			String argValue = args[Constants.ZERO].substring(Constants.ONE);
 			for (int index = Constants.ZERO; index < words.length && !done; index++) {
@@ -65,20 +66,16 @@ public class StudentList {
 		String line = null;
 		try {
 			BufferedReader fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(Constants.STUDENTS_LIST)));
-			line = fileReader.readLine();
+			return fileReader.readLine();
 		} catch (Exception e) {
 		}
-		return line;
+		return null;
 	}
 
 	public static void UpdateContent(String content, String fileName) {
 		try {
 			BufferedWriter fileWriter = new BufferedWriter(new FileWriter(fileName, true));
-			Date newDate = new Date();
-			String dateStyle = Constants.DATE_STYLE;
-			DateFormat dateFormat = new SimpleDateFormat(dateStyle);
-			String now = dateFormat.format(newDate);
-			fileWriter.write(Constants.STUDENT_ENTRY_DELIMITER + content + Constants.UPDATE_CONTENT + now);
+			fileWriter.write(Constants.STUDENT_ENTRY_DELIMITER + content + Constants.UPDATE_CONTENT + new SimpleDateFormat(Constants.DATE_STYLE).format(new Date()));
 			fileWriter.close();
 		} catch (Exception e) {
 		}
